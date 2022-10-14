@@ -1,16 +1,20 @@
 {
   "name": "basics",
   "version": "1.0.0",
-  "description": "a basic server in express that gets an api of user",
+  "description": "Health Care system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install && npm run start",
     "dev": "nodemon server.js"
   },
-  "author": "Manji the madman",
+  "author": "Gar Manji Michael",
   "license": "ISC",
   "devDependencies": {
-    "express.js": "^1.0.0",
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express.js": "^1.0.0",
+    "morgan": "^1.10.0"
   }
 }
