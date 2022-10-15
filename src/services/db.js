@@ -1,7 +1,9 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const mongo_URL = process.env.mongo_URL;
-console.log(mongo_URL);
+const mongo_URL =
+  "mongodb+srv://Health:Health@cluster0.5u1jwt1.mongodb.net/health";
+
+// console.log(mongo_URL);
 
 mongoose.connection.on("open", () => {
   console.log(`database connected @ ${mongoose.connection.host}`);
