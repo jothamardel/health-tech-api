@@ -43,7 +43,8 @@ async function httpRegisterUser(req, res) {
   if (!fullName || !email || !password) {
     return res.status(400).json({
       message: "All fields required",
-      type: "error",
+      status: "error",
+      success: false
     });
   }
   try {
@@ -53,7 +54,8 @@ async function httpRegisterUser(req, res) {
     if (allData) {
       res.status(200).json({
         message: `${allData.email} belongs to an account. Please Login or Reset Password`,
-        type: "error",
+        status: "error",
+        success: false
       });
       return;
     }
@@ -68,11 +70,15 @@ async function httpRegisterUser(req, res) {
     res.status(201).json({
       message: "successfully created",
       data: newUser,
-      type: "success",
+      status: "success",
+      success: true
     });
   } catch (error) {
+    console.log(error)
     res.status(400).json({
-      message: `${error}`,
+      error: `${error.message}`,
+      status: "error",
+      success: false
     });
   }
 }
