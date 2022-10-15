@@ -14,18 +14,24 @@ async function httpLoginUser(req, res) {
     const userData = await User.findOne({ email });
     if (userData && bcrypt.compareSync(password, userData.password)) {
       res.status(200).json({
-        message: "successful",
+        message: "logged in successfully",
         data: userData,
-        type: "success",
+        status: "success",
+        success: true
       });
       return;
     }
-    res.status(404).json({
-      message: "User does not exist",
+    res.status(400).json({
+      message: "Unable to login",
+      status: "error",
+      success: false
     });
   } catch (error) {
     res.status(400).json({
-      message: `${error}`,
+      error: `${error.message}`,
+      message: "Unable to login",
+      status: "error",
+      success: false
     });
   }
 }
