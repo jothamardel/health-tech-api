@@ -9,9 +9,10 @@ mongoose.connection.on("error", (err) => {
   console.log(`database connection failed with ${err}`);
   process.exit(1);
 });
+mongo_URL = "mongodb+srv://Health:Health@cluster0.5u1jwt1.mongodb.net/health";
 
 const mongoConnect = async () => {
-  await mongoose.connect(`${process.env.mongo_URL}`, {
+  await mongoose.connect(mongo_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
