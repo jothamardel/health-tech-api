@@ -5,9 +5,9 @@ const profileRoute = require("./profile.route");
 const unwellRoute = require("./unwell.route");
 const route = express.Router();
 
+route.use("/", appRoute);
 route.use("/auth/", authRoute);
 route.use("/api/", unwellRoute);
-route.use("/", appRoute);
-route.use("/profile", profileRoute);
+route.use("/api/", profileRoute);
 
 module.exports = route;
