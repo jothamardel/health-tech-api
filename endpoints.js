@@ -1,5 +1,5 @@
-
 module.exports = Object.freeze({
-  REGISTER: '/register',
-  LOGIN: '/login'
-})
+  ROOT: "/",
+  REGISTER: "/register",
+  LOGIN: "/login",
+});
