@@ -4,7 +4,8 @@
   "description": "Health Care system",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && npm run start",
+    "start": "npm install && npm run deploy",
+    "deploy":"node server.js",
     "dev": "nodemon server.js"
   },
   "author": "Gar Manji Michael",
