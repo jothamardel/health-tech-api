@@ -5,10 +5,8 @@ const app = express();
 const indexRoute = require("./src/routes/routes");
 
 app.use(express.json());
-app.use(morgan("dev"));
-
+app.use(morgan("combined"));
 app.use(cors());
-
 app.use(indexRoute);
 
 module.exports = { app };
