@@ -13,14 +13,11 @@ async function httpCreateUserAndUpdateMedicalHistory(req, res) {
   }
   try {
 
-    let user = await Profile.findOneAndUpdate({ userId: req.body.userId }, {...req.body}, { upsert: true});
-    user  = await Profile.findOne({ userId: req.body.userId });
-    user = {...req.body};
-    await user.save();
+    const user = await Profile.findOneAndUpdate({ userId: req.body.userId }, {...req.body}, { upsert: true});
     const userData = await User.findOne({ _id: req.body.userId });
     console.log(userData)
     userData.is_active = true;
-    await userData.save();
+    await userData.save()
     res.status(200).json({
       message: "successful",
       status: "success",

@@ -12,13 +12,35 @@ async function httpUnwell(req, res) {
     })
   }
   try {
-   const response = await Unwell.findOneAndUpdate({ userId: req.body.userId }, {...req.body}, { upsert: true});
-   res.status(201).json({
-    message: "Operation successful",
-    status: "success",
-    success: true,
-    data: response
-   })
+  //  let response  = await Unwell.findOneAndUpdate({ userId: req.body.userId }, {...req.body}, {upsert: true, new: true});
+    // let response = await Unwell.findOne({ userId: req.body.userId })
+    // console.log(response)
+    // response = {...req.body}
+    // await response.save();
+    // console.log(response);
+  //  res.status(201).json({
+  //   message: "Operation successful",
+  //   status: "success",
+  //   success: true,
+  //   data: response
+  //  })
+  const record = await Unwell.findOne({ userId: req.body.userId});
+  if (!record) {
+    const newRecord = new Unwell({
+      ...req.body
+    });
+    await newRecord.save();
+    return res.status(200).json({
+      message: "Operation successful",
+      status: "success",
+      success: true,
+      data: newRecord
+    })
+  }
+
+  await Unwell.findOneAndUpdate({ userId: req.body.userId}, req.body);
+  httpFindOneAndReturn(req, res);
+  // console.log(record);
   } catch (error) {
     res.status(400).json({
       message: "Operation unsuccessful",
@@ -31,6 +53,25 @@ async function httpUnwell(req, res) {
 
 async function httpDoctorDiagnosis(req, res) {
   
+}
+
+async function httpFindOneAndReturn(req, res) {
+  try {
+    const single = await Unwell.find({ userId: req.body.userId });
+    res.status(200).json({
+      message: "operation successfully!",
+      status: "success",
+      success: true,
+      data: single
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: "Operation unsuccessful",
+      status: "error",
+      success: false,
+      error: error.message
+    })
+  }
 }
 
 async function httpAllUnwell(req, res) {

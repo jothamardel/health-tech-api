@@ -7,7 +7,6 @@ const unwell = new Schema({
   },
   date: {
     type: String,
-    required: true,
   },
   full_name: {
     type: String,
